@@ -1,17 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using EZCameraShake;
+﻿using UnityEngine;
 
-public class Brick : MonoBehaviour {
+public abstract class Brick : MonoBehaviour {
 
-    [SerializeField] GameObject explosionPrefab;
-    [SerializeField] AudioClip explosionClip;
+    public delegate void BrickDestroyed();
+    public static event BrickDestroyed OnBrickDestroyed;
 
     private void OnCollisionEnter(Collision collision) {
-        Instantiate(explosionPrefab, transform.position, Quaternion.identity, transform.parent);
-        CameraShaker.Instance.ShakeOnce(1, 1, 0.1f, 1f);
-        SoundManager.instance.PlaySingle(explosionClip);
-        Destroy(gameObject);
+        CollisionActions(collision.gameObject);
     }
+
+    private void OnParticleCollision(GameObject other) {
+        CollisionActions(other, true);
+    }
+
+    protected void NotifyBrickDestroyed(){
+        if (OnBrickDestroyed != null) {
+            OnBrickDestroyed();
+        }
+    }
+
+    public abstract void CollisionActions(GameObject collision, bool particleCollision = false);
 }

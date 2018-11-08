@@ -3,6 +3,7 @@ using System.Collections;
 
 public class SoundManager : MonoBehaviour {
     public AudioSource vfxSource;                   //Drag a reference to the audio source which will play the sound effects.
+    public AudioSource ambianceSource;                 
     public AudioSource musicSource;                 //Drag a reference to the audio source which will play the music.
     public static SoundManager instance = null;     //Allows other scripts to call functions from SoundManager.             
     public float lowPitchRange = .95f;              //The lowest a sound effect will be randomly pitched.
@@ -30,15 +31,15 @@ public class SoundManager : MonoBehaviour {
 
     //Used to play single sound clips.
     public void PlaySingle(AudioClip clip, float pitch = 1) {
-        //Set the clip of our efxSource audio source to the clip passed in as a parameter.
+        /*//Set the clip of our efxSource audio source to the clip passed in as a parameter.
         vfxSource.clip = clip;
 
         //Play the clip.
-        vfxSource.Play();
-        /*var audioSource = Instantiate(_vfxSourcePrefab, transform);
+        vfxSource.Play();*/
+        var audioSource = Instantiate(_vfxSourcePrefab, transform);
         audioSource.clip = clip;
         audioSource.Play();
-        StartCoroutine(DestroyOnEnd(audioSource, clip.length));*/
+        StartCoroutine(DestroyOnEnd(audioSource, clip.length));
     }
 
 
@@ -56,5 +57,9 @@ public class SoundManager : MonoBehaviour {
     IEnumerator DestroyOnEnd(AudioSource audioSource, float audioLength) {
         yield return new WaitForSeconds(audioLength);
         Destroy(audioSource.gameObject);
+    }
+
+    public void ChangeMusicSpeed(float newSpeed){
+        musicSource.pitch = newSpeed;
     }
 }

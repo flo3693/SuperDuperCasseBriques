@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 54577479278305946}
-  speed: 0.8
+  speed: 0.7
 --- !u!135 &135920821344297786
 SphereCollider:
   m_ObjectHideFlags: 1
