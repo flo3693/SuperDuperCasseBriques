@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour {
         foreach (var live in lives) {
             live.SetActive(true);
         }
-        victory.SetActive(false);
+        //victory.SetActive(false);
         defeat.SetActive(false);
     }
 

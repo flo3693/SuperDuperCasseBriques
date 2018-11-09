@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SoundManager : MonoBehaviour {
     public AudioSource vfxSource;                   //Drag a reference to the audio source which will play the sound effects.
-    public AudioSource ambianceSource;                 
+    public AudioSource ambianceSource;
     public AudioSource musicSource;                 //Drag a reference to the audio source which will play the music.
     public static SoundManager instance = null;     //Allows other scripts to call functions from SoundManager.             
     public float lowPitchRange = .95f;              //The lowest a sound effect will be randomly pitched.
@@ -59,7 +59,8 @@ public class SoundManager : MonoBehaviour {
         Destroy(audioSource.gameObject);
     }
 
-    public void ChangeMusicSpeed(float newSpeed){
-        musicSource.pitch = newSpeed;
+    public void ChangeMusicSpeed(float newSpeed) {
+        if (musicSource != null)
+            musicSource.pitch = newSpeed;
     }
 }
