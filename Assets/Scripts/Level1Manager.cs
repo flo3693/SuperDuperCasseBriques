@@ -46,8 +46,8 @@ public class Level1Manager : MonoBehaviour {
             _paddle.GetComponent<Paddle>().Initialize(rightWall);
             resetScoreMultiplier();
         } else {
-            Debug.Log("Game Over");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            uiManager.Defeat();
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
@@ -57,7 +57,7 @@ public class Level1Manager : MonoBehaviour {
         uiManager.UpdateScore(score);
         _numberOfBricks--;
         if(_numberOfBricks <= 0){
-            Debug.Log("YOU WIN");
+            uiManager.Victory();
         }
     }
 

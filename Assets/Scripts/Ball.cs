@@ -44,4 +44,8 @@ public class Ball : MonoBehaviour {
         slowBall = false;
         SoundManager.instance.ChangeMusicSpeed(1);
     }
+
+    private void OnDestroy() {
+        SoundManager.instance.ChangeMusicSpeed(1);
+    }
 }

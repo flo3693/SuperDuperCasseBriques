@@ -4,6 +4,10 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour {
     [SerializeField] GameObject[] lives;
     [SerializeField] Text score;
+    [SerializeField] GameObject victory;
+    [SerializeField] AudioClip victorySound;
+    [SerializeField] GameObject defeat;
+    [SerializeField] AudioClip defeatSound;
 
     int _index;
 
@@ -17,6 +21,8 @@ public class UIManager : MonoBehaviour {
         foreach (var live in lives) {
             live.SetActive(true);
         }
+        victory.SetActive(false);
+        defeat.SetActive(false);
     }
 
     public void RemoveLife() {
@@ -26,5 +32,15 @@ public class UIManager : MonoBehaviour {
 
     public void UpdateScore(int newScore) {
         score.text = newScore.ToString();
+    }
+
+    public void Victory(){
+        victory.SetActive(true);
+        SoundManager.instance.PlaySingle(victorySound);
+    }
+
+    public void Defeat(){
+        defeat.SetActive(true);
+        SoundManager.instance.PlaySingle(defeatSound);
     }
 }
